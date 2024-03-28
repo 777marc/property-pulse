@@ -22,7 +22,7 @@ const PropertiesCard = ({ key, property }) => {
   };
 
   return (
-    <div className="rounded-xl shadow-md relative">
+    <div key={key} className="rounded-xl shadow-md relative">
       <Image
         src={`/images/properties/${property.images[0]}`}
         alt=""
