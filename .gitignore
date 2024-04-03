@@ -38,3 +38,6 @@ next-env.d.ts
 
 # env vars
 .env
+
+# google creds
+google-creds.json
