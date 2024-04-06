@@ -10,11 +10,9 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Navbar = () => {
   const { data: session } = useSession();
-
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropDownOpen, setisProfileDropDownOpen] = useState(false);
-  const [providers, setProviders] = useState(false);
-
+  const [providers, setProviders] = useState();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -23,7 +21,7 @@ const Navbar = () => {
       setProviders(res);
     };
     setAuthProviders();
-  });
+  }, []);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -104,14 +102,16 @@ const Navbar = () => {
               <div className="flex items-center">
                 {providers &&
                   Object.values(providers).map((provider, index) => {
-                    <button
-                      key={index}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                      onClick={() => signIn(provider.id)}
-                    >
-                      <FaGoogle className="text-white mr-2" />
-                      <span>Login or Register</span>
-                    </button>;
+                    return (
+                      <button
+                        key={index}
+                        className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                        onClick={() => signIn(provider.id)}
+                      >
+                        <FaGoogle className="text-white mr-2" />
+                        <span>Login or Register</span>
+                      </button>
+                    );
                   })}
               </div>
             </div>
