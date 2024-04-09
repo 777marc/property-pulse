@@ -187,6 +187,9 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-0"
+                      onClick={() => {
+                        setisProfileDropDownOpen(false);
+                      }}
                     >
                       Your Profile
                     </Link>
@@ -196,18 +199,24 @@ const Navbar = () => {
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
+                      onClick={() => {
+                        setisProfileDropDownOpen(false);
+                      }}
                     >
                       Saved Properties
                     </Link>
-                    <Link
-                      href="/"
+                    <button
+                      onClick={() => {
+                        setisProfileDropDownOpen(false);
+                        signOut();
+                      }}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"
                     >
                       Sign Out
-                    </Link>
+                    </button>
                   </div>
                 )}
               </div>
