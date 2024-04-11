@@ -30,9 +30,66 @@ const PropertyAddForm = () => {
     images: [],
   });
 
-  const handleChange = () => {};
-  const handleAmenitiesChange = () => {};
-  const handleImageChange = () => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    // nested values
+    if (name.includes(".")) {
+      const [outerKey, innerKey] = name.split(".");
+      setFields((previousFields) => ({
+        ...previousFields,
+        [outerKey]: {
+          ...previousFields[outerKey],
+          [innerKey]: value,
+        },
+      }));
+    } else {
+      setFields((previousFields) => ({
+        ...previousFields,
+        [name]: value,
+      }));
+    }
+  };
+
+  const handleAmenitiesChange = (e) => {
+    const { value, checked } = e.target;
+
+    // clone ameneties array
+    const updatedAmeneties = [...fields.amenities];
+
+    if (checked) {
+      updatedAmeneties.push(value);
+    } else {
+      const index = updatedAmeneties.indexOf(value);
+      if (index !== -1) {
+        updatedAmeneties.splice(index, 1);
+      }
+    }
+
+    // update state with new array
+    setFields((previousFields) => ({
+      ...previousFields,
+      amenities: updatedAmeneties,
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const { files } = e.target;
+
+    // clone images array
+    const updatedImages = [...fields.images];
+
+    // add files to array
+    for (const file of files) {
+      updatedImages.push(file);
+    }
+
+    // update state with new array
+    setFields((previousFields) => ({
+      ...previousFields,
+      images: updatedImages,
+    }));
+  };
 
   useEffect(() => {
     setMounted(true);
