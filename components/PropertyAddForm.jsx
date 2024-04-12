@@ -5,17 +5,17 @@ const PropertyAddForm = () => {
   const [mounted, setMounted] = useState(false);
   const [fields, setFields] = useState({
     type: "",
-    name: "",
+    name: "test property",
     description: "",
     location: {
-      street: "",
-      city: "",
-      state: "",
-      zipcode: "",
+      street: "123 Main St",
+      city: "Anytown",
+      state: "FL",
+      zipcode: "12345",
     },
-    beds: "",
-    baths: "",
-    square_feet: "",
+    beds: "2",
+    baths: "2",
+    square_feet: "1000",
     amenities: [],
     rates: {
       weekly: "",
@@ -24,7 +24,7 @@ const PropertyAddForm = () => {
     },
     seller_info: {
       name: "",
-      email: "",
+      email: "test@email.com",
       phone: "",
     },
     images: [],
@@ -97,7 +97,11 @@ const PropertyAddForm = () => {
 
   return (
     mounted && (
-      <form>
+      <form
+        action="/api/properties"
+        method="POST"
+        encType="multipart/form-data"
+      >
         <h2 className="text-3xl text-center font-semibold mb-6">
           Add Property
         </h2>
@@ -501,7 +505,7 @@ const PropertyAddForm = () => {
           <input
             type="text"
             id="seller_name"
-            name="seller_info.name."
+            name="seller_info.name"
             className="border rounded w-full py-2 px-3"
             placeholder="Name"
             value={fields.seller_info.name}
@@ -559,6 +563,7 @@ const PropertyAddForm = () => {
             accept="image/*"
             multiple
             onChange={handleImageChange}
+            required
           />
         </div>
 
