@@ -62,6 +62,8 @@ export const POST = async (request) => {
       // images,
     };
 
+    console.log(propertyData);
+
     const newProperty = new Property(propertyData);
     await newProperty.save();
 
