@@ -1,6 +1,6 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
-// fetch all properties
+// fetch sin properties
 async function fetchProperty(id) {
   try {
     if (!apiDomain) {
@@ -20,14 +20,14 @@ async function fetchProperty(id) {
   }
 }
 
-// fetch single property
+// fetch all property
 async function fetchProperties() {
   try {
     if (!apiDomain) {
       return [];
     }
 
-    const res = await fetch(`${apiDomain}/properties`);
+    const res = await fetch(`${apiDomain}/properties`, { cache: "no-store" });
 
     if (!res.ok) {
       throw new Error("failed to fetch data");
