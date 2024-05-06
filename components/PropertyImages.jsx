@@ -11,7 +11,7 @@ const PropertyImages = ({ images }) => {
             className="object-cover h-[400px] mx-auto rounded-xl"
             width={1800}
             height={400}
-            priority={true}
+            priority="true"
           />
         ) : (
           <div className="grid grid-cols-2 gap-4">
@@ -33,7 +33,7 @@ const PropertyImages = ({ images }) => {
                     className="object-cover h-[400px] w-full rounded-xl"
                     width={1800}
                     height={400}
-                    priority={true}
+                    priority="true"
                   />
                 </div>
               );
