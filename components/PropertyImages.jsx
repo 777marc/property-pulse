@@ -32,8 +32,9 @@ const PropertyImages = ({ images }) => {
                     alt=""
                     className="object-cover h-[400px] w-full rounded-xl"
                     width={1800}
-                    height={400}
+                    height={0}
                     priority="true"
+                    style={{ height: "auto" }}
                   />
                 </div>
               );

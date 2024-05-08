@@ -26,8 +26,8 @@ const PropertiesCard = ({ key, property }) => {
       <Image
         src={property.images[0]}
         alt=""
-        width={100}
-        height={100}
+        width={400}
+        height={0}
         className="w-full h-auto rounded-t-xl"
       />
       <div className="p-4">
