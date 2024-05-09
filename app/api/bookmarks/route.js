@@ -20,21 +20,26 @@ export const POST = async (request) => {
 
     const user = await User.findById(userId);
 
-    let isBookmarked = User.bookmarks.includes(propertyId);
+    let isBookmarked = user.bookmarks.includes(propertyId);
 
     let message;
 
     if (isBookmarked) {
       user.bookmarks.pull(propertyId);
       message = "Bookmark removed successfully";
+      isBookmarked = false;
     } else {
       user.bookmarks.push(propertyId);
       message = "Bookmark added successfully";
+      isBookmarked = true;
     }
 
-    await User.save();
+    await user.save();
 
-    return new Response(JSON.stringify(message, isBookmarked), { status: 200 });
+    return new Response(JSON.stringify({ message, isBookmarked }), {
+      status: 200,
+      isBookmarked: isBookmarked,
+    });
   } catch (error) {
     console.log(error);
     return new Response("error adding bookmark", {
