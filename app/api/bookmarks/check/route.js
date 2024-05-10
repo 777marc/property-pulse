@@ -21,21 +21,7 @@ export const POST = async (request) => {
 
     let isBookmarked = user.bookmarks.includes(propertyId);
 
-    let message;
-
-    if (isBookmarked) {
-      user.bookmarks.pull(propertyId);
-      message = "Bookmark removed successfully";
-      isBookmarked = false;
-    } else {
-      user.bookmarks.push(propertyId);
-      message = "Bookmark added successfully";
-      isBookmarked = true;
-    }
-
-    await user.save();
-
-    return new Response(JSON.stringify({ message, isBookmarked }), {
+    return new Response(JSON.stringify({ isBookmarked }), {
       status: 200,
       isBookmarked: isBookmarked,
     });
