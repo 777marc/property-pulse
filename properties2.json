@@ -211,7 +211,7 @@
     "type": "House",
     "description": "Escape to this seaside house for a relaxing getaway.",
     "location": {
-      "street": "456 Oceanfront Drive",
+    "street": "456 Oceanfront Drive",
       "city": "Miami",
       "state": "FL",
       "zipcode": "33101"
