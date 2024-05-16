@@ -23,6 +23,7 @@ const SearchResultsPage = () => {
           setProperties(data);
         }
       } catch (error) {
+        console.log(error);
       } finally {
         setLoading(false);
       }
