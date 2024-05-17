@@ -5,6 +5,7 @@ import Spinner from "@/components/Spinner";
 import PropertiesCard from "@/components/PropertiesCard";
 import Link from "next/link";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
+import PropertySearchForm from "@/components/PropertySearchForm";
 
 const SearchResultsPage = () => {
   const [properties, setProperties] = useState([]);
@@ -32,12 +33,17 @@ const SearchResultsPage = () => {
     };
 
     getSearchResults();
-  }, []);
+  }, [location, propertyType]);
 
   if (loading) return <Spinner loading={loading} />;
 
   return (
     <>
+      <section className="bg-blue-700 py-4">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col items-start sm:px-6 lg:px-8">
+          <PropertySearchForm />
+        </div>
+      </section>
       <section className="px-4 py-6">
         <div className="container-xl lg:container m-auto px-4 py-6">
           <Link
