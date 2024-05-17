@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Spinner from "@/components/Spinner";
 import PropertiesCard from "@/components/PropertiesCard";
+import Link from "next/link";
+import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const SearchResultsPage = () => {
   const [properties, setProperties] = useState([]);
@@ -38,6 +40,14 @@ const SearchResultsPage = () => {
     <>
       <section className="px-4 py-6">
         <div className="container-xl lg:container m-auto px-4 py-6">
+          <Link
+            href="/properties"
+            className="flex items-center text-blue-500 hover:underline mb-3"
+          >
+            <FaArrowAltCircleLeft className="mr-2 mb-1" />
+            Back to Properties
+          </Link>
+          <h1 className="text-2xl mb-4">Search Results</h1>
           {properties.lenth === 0 ? (
             <p>No Properties Found</p>
           ) : (
