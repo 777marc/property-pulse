@@ -8,12 +8,16 @@ export const dynamic = "force-dynamic";
 export const POST = async (request) => {
   try {
     await connectDB();
-    const { name, email, phone, message, property, recipient } = request.json();
+    const { name, email, phone, message, property, recipient } =
+      await request.json();
 
     const sessionUser = await getSessionUser();
 
     if (!sessionUser || !sessionUser.userId) {
-      return new Response("Unauthorized", { status: 401 });
+      return new Response(
+        JSON.stringify({ message: "You must be logged in to send a message." }),
+        { status: 401 }
+      );
     }
 
     const { user } = sessionUser;
@@ -31,6 +35,7 @@ export const POST = async (request) => {
       phone,
       body: message,
       property,
+      recipient,
     });
 
     await newMessage.save();
