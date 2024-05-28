@@ -11,11 +11,13 @@ import PropertyImages from "@/components/PropertyImages";
 import BookmarkButton from "@/components/BookmarkButton";
 import ShareButtons from "@/components/ShareButtons";
 import PropertyContactForm from "@/components/PropertyContactForm";
+import { useSession } from "next-auth/react";
 
 const SingleProperty = () => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { data: session } = useSession();
 
   useEffect(() => {
     const fetchPropertyData = async () => {
@@ -67,7 +69,7 @@ const SingleProperty = () => {
                 <aside className="space-y-4">
                   <BookmarkButton property={property} />
                   <ShareButtons property={property} />
-                  <PropertyContactForm property={property} />
+                  {session && <PropertyContactForm property={property} />}
                 </aside>
               </div>
             </div>

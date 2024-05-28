@@ -51,8 +51,6 @@ const PropertyContactForm = ({ property }) => {
       setPhone("");
       setMessage("");
     }
-
-    setWasSubmitted(true);
   };
 
   return (
