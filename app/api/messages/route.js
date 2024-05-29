@@ -72,3 +72,42 @@ export const POST = async (request) => {
     return new Response("Something went wrong", { status: 500 });
   }
 };
+
+// PUT /api/messages/:id
+export const PUT = async (request, { params }) => {
+  try {
+    await connectDB();
+
+    const sessionUser = await getSessionUser();
+
+    if (!sessionUser || !sessionUser.userId) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
+    console.log("params", params);
+    const { userId } = sessionUser;
+    const { _id } = params;
+
+    const existingMessages = await Message.find({ _id: _id });
+    // verify ownership
+    if (existingMessages.recipient.toString() !== userId) {
+      return new Response("Unauthorized", { status: 401 });
+    }
+
+    const messageData = {
+      read: true,
+    };
+
+    //update message
+    await Message.findByIdAndUpdate(id, messageData);
+
+    return new Response(JSON.stringify(messageData), {
+      status: 200,
+    });
+  } catch (error) {
+    console.log(error);
+    return new Response("error adding property", {
+      status: 500,
+    });
+  }
+};
