@@ -27,6 +27,8 @@ const Messages = () => {
     fetchMessages();
   }, []);
 
+  const removeMessage = (id) => {};
+
   if (loading) return <Spinner loading={loading} />;
 
   return (
