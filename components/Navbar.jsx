@@ -7,13 +7,14 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { useGlobalContext } from "@/context/GlobalContext";
 
 const Navbar = () => {
   const { data: session } = useSession();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileDropDownOpen, setisProfileDropDownOpen] = useState(false);
   const [providers, setProviders] = useState();
-  const [unreadCount, setUnreadCount] = useState(0);
+  const { unreadCount, setUnreadCount } = useGlobalContext();
   const pathname = usePathname();
   const profileImage = session?.user?.image;
 
