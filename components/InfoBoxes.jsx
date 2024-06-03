@@ -8,7 +8,7 @@ const InfoBoxes = () => {
           <InfoBox
             heading={"For Renters"}
             buttonInfo={{
-              link: "/",
+              link: "/properties",
               text: "Browse Properties",
               backgroundColor: "bg-gray-800",
               textColor: "text-gray-100",
