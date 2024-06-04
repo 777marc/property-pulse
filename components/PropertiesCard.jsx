@@ -8,7 +8,7 @@ import {
   FaMapMarker,
 } from "react-icons/fa";
 
-const PropertiesCard = ({ key, property }) => {
+const PropertiesCard = ({ property }) => {
   const getRates = () => {
     const { rates } = property;
 
@@ -22,7 +22,7 @@ const PropertiesCard = ({ key, property }) => {
   };
 
   return (
-    <div key={key} className="rounded-xl shadow-md relative">
+    <div className="rounded-xl shadow-md relative">
       <Image
         src={property.images[0]}
         alt=""
