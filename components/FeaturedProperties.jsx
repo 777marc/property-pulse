@@ -1,11 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
 import FeaturedPropertyCard from "./FeaturedPropertyCard";
-import Spinner from "./Spinner";
 
 const FeaturedProperties = () => {
   const [featruedProperties, setFeaturedProperties] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchFeaturedProperties = async () => {
@@ -19,33 +17,26 @@ const FeaturedProperties = () => {
         setFeaturedProperties(data);
       } catch (error) {
         console.log(error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchFeaturedProperties();
   }, []);
-  return loading ? (
-    <Spinner loading={loading} />
-  ) : (
-    <section className="px-4 py-6">
-      <div className="container-xl lg:container m-auto px-4 py-6">
-        <h2 className="text-3xl font-bold text-blue-500 mb-6 text-center">
-          Featured Properties
-        </h2>
-        {featruedProperties.lenth === 0 ? (
-          <p>No Featured Properties Found</p>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {featruedProperties.map((property) => {
-              return (
-                <FeaturedPropertyCard key={property._id} property={property} />
-              );
-            })}
+
+  return (
+    featruedProperties.length > 0 && (
+      <section className="bg-blue-50 px-4 pt-6 pb-10">
+        <div className="container-xl lg:container m-auto">
+          <h2 className="text-3xl font-bold text-blue-500 mb-6 text-center">
+            Featured Properties
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featruedProperties.map((property) => (
+              <FeaturedPropertyCard key={property._id} property={property} />
+            ))}
           </div>
-        )}
-      </div>
-    </section>
+        </div>
+      </section>
+    )
   );
 };
 
