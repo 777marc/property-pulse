@@ -1,6 +1,6 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
-// fetch sin properties
+// fetch single property
 async function fetchProperty(id) {
   try {
     if (!apiDomain) {
@@ -20,7 +20,7 @@ async function fetchProperty(id) {
   }
 }
 
-// fetch all property
+// fetch all properties
 async function fetchProperties() {
   try {
     if (!apiDomain) {
